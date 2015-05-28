@@ -1,0 +1,40 @@
+<ons-page ng-controller="ProductController" sliding-menu-ignore="true">
+    
+    <ons-toolbar>
+    
+	    <div class="left"><ons-back-button></ons-back-button></div>
+	    
+	    <!-- Write title of the post in toolbar
+	    <div class="center" ng-bind-html="item.title"></div>
+	    -->
+    
+    </ons-toolbar>
+
+    <ul rn-carousel rn-carousel-indicator>
+    	<li ng-repeat="picture in item.custom_fields.wapp_slider"><img ng-src="{{picture.image}}"/></li>
+    </ul>
+
+    <section class="main_post">
+
+	    <img img-cache ic-src="{{item.thumbnail_images.wapp_horizontal_large.url}}"/>
+	    
+	    <div class="content_warper">
+	    
+		    <h1 class="title" ng-bind-html="item.title"></h1>
+		    
+		    <div class="date">{{item.date_formated}} / {{item.author.name}}</div>
+		    
+		    <div ng-bind-html="item.content"></div>
+		    
+		    <p class="tags"><ons-icon icon="tags" fixed-width="true" ng-show="item.tags && item.tags.length>0"></ons-icon>
+		    	<span ng-repeat="tag in item.tags">{{tag}}{{$last ? '' : ', '}}</span>
+		    </p>
+		    
+		    <ons-button class="button-share" ng-click="sharePost()">
+		    	<ons-icon icon="ion-android-share-alt"></ons-icon> Share this post
+		    </ons-button>
+
+	    </div>
+    </section>
+    
+</ons-page>

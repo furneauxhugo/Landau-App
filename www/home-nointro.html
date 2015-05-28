@@ -1,0 +1,138 @@
+<ons-navigator title="Navigator" var="appNavigator">
+    
+    <ons-page modifier="full" ng-controller="HomeController">
+        
+
+      
+	  <!--  
+	    <ons-pull-hook ng-action="load($done)" var="loader">
+	        <span ng-switch="loader.getCurrentState()">
+	        <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon> Pull down to refresh</span>
+	        <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon> Release to refresh</span>
+	        <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Loading data...</span>
+	        </span>
+	    </ons-pull-hook>
+		-->
+		  
+        <ons-toolbar modifier="transparent">
+            <div class="left">
+            <ons-toolbar-button onclick="menu.toggleMenu()">
+            <ons-icon icon="bars">
+            </ons-toolbar-button>
+            </div>
+            
+			<!--            
+            <div class="right">
+            <ons-toolbar-button onclick="appNavigator.pushPage('settings.html',{title: 'Settings', animation: 'slide'})">
+            <ons-icon icon="ellipsis-v">
+            </ons-toolbar-button>
+            </div> -->
+            
+        </ons-toolbar>
+
+
+		<!-- A slider gallery -->
+		<section sliding-menu-ignore="true" class="gallery-page slider_home">
+        
+			<ul class="home" rn-carousel rn-carousel-indicator rn-carousel-control>
+				<li ng-repeat="slide in slides">
+					
+					<div class="image_container" img-cache ic-bg="{{slide.picture}}">
+						
+						<div class="content">
+							<div class="caption">{{ slide.caption }}</div>
+						</div>
+
+					</div>
+					
+					<div class="description">{{ slide.description }}</div>
+				</li>
+			</ul>
+		</section>
+				
+		<!-- Block 1 -->
+		<section class="list_columns">
+
+			<div class="row" ng-repeat="row in products | partition:2">
+				<ons-col class="views-row" size="50" ng-repeat="product in row" ng-click="showDetail({{product.id}})">
+					<div>
+						<img img-cache ic-src="{{ product.thumbnail_images.wapp_horizontal_medium.url }}" alt="{{ product.title }}"/>
+						
+						<div class="content_warper">
+							<h3 class="title" ng-bind-html="product.title"></h3>
+							
+							<div class="description">
+								<p ng-model="letterLimit" ng-bind-html="product.excerpt | limitTo:letterLimit"></p>
+							</div>
+							
+							<div class="date"><span ng-bind-html="product.date_formated"></span><ons-icon icon="ion-android-arrow-forward"></ons-icon></div>
+						</div>
+						
+					</div>
+				</ons-col>
+			</div>
+
+
+		</section>
+    
+		<!-- Block 2 -->
+		<section class="list_full">
+
+			<ons-row align="center">
+				<ons-col>
+					<span ng-bind="msg"></span>
+				</ons-col>
+			</ons-row>
+
+			<div ng-repeat="post in posts | limitTo: 2">
+				<ons-row class="article">
+					<ons-col>
+
+						<div class="image_warper">
+							<img img-cache class="post-teaser-image" ic-src="{{ post.thumbnail_images.wapp_horizontal_large.url }}" ng-show="post.thumbnail_images.wapp_horizontal_large.url" />
+							
+							<h3 class="title" ng-bind-html="post.title"></h3>
+						</div>
+						
+						<div class="content_warper" ng-click="showDetail({{post.id}})">
+
+							<p class="date"><span ng-bind-html="post.date_formated"></span> / {{post.author.name}} <ons-icon icon="ion-android-arrow-forward"></ons-icon> </p>
+
+							<p class="post-excerpt" ng-bind-html="post.excerpt | limitTo:150"></p>
+							
+						</div>
+					</ons-col>
+				</ons-row>
+			</div>
+
+		</section>
+	
+		<!-- Block 3 -->
+		<ons-list class="list_list">
+			<ons-list-item modifier="chevron" class="item" ng-repeat="category in categories" ng-click="showDetail({{category.id}})">
+				<ons-row>
+				
+					<ons-col width="110px"> 
+						<div class="item-thum" img-cache ic-bg="{{category.thumbnail_images.wapp_horizontal_small.url}}"></div>
+					</ons-col>
+					
+					<ons-col>
+						<div class="content_warper">
+							<header>
+								<span class="item-title">{{ category.title }}</span>
+							</header>
+							
+							<div class="date">{{category.date_formated}} <ons-icon icon="ion-android-arrow-forward"></ons-icon></div>
+						</div>
+					</ons-col>
+				
+				</ons-row>                          
+			</ons-list-item>
+		</ons-list>
+				
+				
+
+        
+    </ons-page>
+
+</ons-navigator>

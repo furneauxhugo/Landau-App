@@ -1,0 +1,52 @@
+<ons-page ng-controller="CategoryPostController">
+    
+    <ons-toolbar>
+	    <div class="left"><ons-back-button></ons-back-button></div>
+    </ons-toolbar>
+
+    <section class="main_post">
+
+	    <img ng-show="item.thumbnail_images" ng-src="{{item.thumbnail_images.wapp_horizontal_large.url}}"/>
+
+	    <div class="content_warper">
+
+		    <h1 class="title" ng-bind-html="item.title"></h1>
+	
+		    <div class="date">{{item.date_formated}} / {{item.author.name}}</div>
+	        	        
+		    <div ng-bind-html="item.content"></div>
+	        
+			<p ng-show="{{item.attachments.length}}"><img ng-src="{{item.attachments[0].images.full.url}}"/></p>
+
+	        <!-- Display categories
+	        <p class="categories" ng-show="{{item.categories.length}}"><ons-icon icon="tags"></ons-icon>
+	        	<span ng-repeat="category in item.categories">{{category.title}} ({{category.post_count}}){{$last ? '' : ', '}}</span>
+	        </p>
+			-->
+	
+	        <!-- Display tags
+	        <p class="tags" ng-show="{{item.tags.length}}"><ons-icon icon="tags"></ons-icon>
+	        	<span ng-repeat="tag in item.tags">{{tag.title}} ({{tag.post_count}}){{$last ? '' : ', '}}</span>
+	        </p>
+	        -->
+	        
+		    <ons-button class="button-share" ng-click="sharePost()">
+		    	<ons-icon icon="ion-android-share-alt"></ons-icon> Share this post
+		    </ons-button>
+	
+	        <!-- View Post
+	        	<a class="post-url" ng-href="{{item.url}}">View post</a>
+	        -->
+	
+			<script type="text/ng-template" id="commentsTree">
+				<div class="comment" ng-if="comments" ng-repeat="comment in comments">
+					<div ng-bind-html="comment.content"></div>
+					<div ng-include="'commentsTree'" ng-init='comments=comment.comments'></div>
+				</div>
+			</script>
+	    	<div ng-include="'commentsTree'" ng-init='comments=item.comments'></div>
+
+	    </div>
+    </section>
+    
+</ons-page>

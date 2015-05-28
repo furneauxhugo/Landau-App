@@ -1,0 +1,21 @@
+.page__background{background-color: #f5f5f5}
+
+.list_full .content_warper{background:white;}
+.list_list .list__item{background-color:white}
+.toolbar-button{color:white}
+ul.home li .description{background:white}
+.slider_home{background:white}
+.slider_home .rn-carousel-indicator .active{color:#f2f2f2}
+.slider_home .rn-carousel-indicator span{color:#444}
+
+.list_columns .col > div{background:white}
+
+.main_post{background:white}
+.button-share{background-color: #eec504; color:#353200}
+.toolbar-button--quiet{color:#333;}
+.ion-ios-arrow-back:before{content:'\f2ca';}
+
+.onsen-sliding-menu__menu .page__background{background:#222}
+.onsen-sliding-menu__menu .navigation-bar__title{color:white}
+.onsen-sliding-menu__menu .list{background-color:#222; color:white}
+.onsen-sliding-menu__menu .list__item{color:#ccc; background-image: none; border-bottom:1px solid #292929}

@@ -1,0 +1,53 @@
+<ons-page ng-controller="CategoryPostsController">
+
+    <ons-toolbar>
+	    <div class="left"><ons-back-button></ons-back-button></div>
+	    <div class="center">{{title}}</div>
+    </ons-toolbar>
+
+    <ons-pull-hook ng-action="loadData(true,$done)" var="loader">
+        <span ng-switch="loader.getCurrentState()">
+        <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon> Pull down to refresh</span>
+        <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon> Release to refresh</span>
+        <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Loading data...</span>
+        </span>
+    </ons-pull-hook>
+	
+    <section class="categories">
+			
+		<ons-list class="list_list">
+			<div ons-lazy-repeat="PostsDelegate">
+				
+				<span ng-show="item.loading"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Loading data...</span>
+
+				<ons-list-item modifier="chevron" class="item" ng-show="item.posts[$index]" ng-repeat="post in item.posts">
+		        
+		        <ons-row ng-click="showSearchDetail(post.id)">
+		        	
+		        	<ons-col width="110px"> 
+						<div class="item-thum" img-cache ic-bg="{{post.thumbnail_images.wapp_horizontal_small.url}}"></div>
+					</ons-col>
+
+					<ons-col>
+						<div class="content_warper">
+							<header>
+								<span class="item-title" ng-bind-html="post.title | limitTo:50"></span>
+							</header>
+							
+							
+							<div ng-show="item.loading"><p><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> Loading...</p></span></div>
+							
+							<div class="date">{{post.date_formated}} <ons-icon icon="ion-android-arrow-forward"></ons-icon></div>
+							</div> 
+					</ons-col>
+
+
+		        </ons-row>
+
+				</ons-list-item>
+		</div>
+		</ons-list>
+
+    </section>
+
+</ons-page>
